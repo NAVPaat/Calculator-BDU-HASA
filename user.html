@@ -20,31 +20,59 @@
         body { font-family: 'Outfit', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; overflow-x: hidden; scroll-behavior: smooth; }
         .bg-gradient-custom { position: fixed; inset: 0; z-index: -1; background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); transition: background 0.5s ease; }
         .dark .bg-gradient-custom { background: linear-gradient(120deg, #1e1b4b 0%, #0f172a 100%); }
+        
         .glass-container { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); border-radius: 2rem; transition: all 0.3s ease; }
         .dark .glass-container { background: rgba(30, 41, 59, 0.85); border-color: rgba(255, 255, 255, 0.1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
-        .input-box { width: 100%; padding: 0.875rem 1rem; background: #ffffff; border: 2px solid #e2e8f0; border-radius: 1rem; color: #1e293b; font-weight: 500; transition: all 0.3s ease; }
+        
+        .input-box { width: 100%; padding: 0.875rem 1rem; background: #ffffff; border: 2px solid #e2e8f0; border-radius: 1rem; color: #1e293b; font-weight: 500; transition: all 0.3s ease; outline: none; }
         .dark .input-box { background: rgba(15, 23, 42, 0.6); border-color: #334155; color: #f8fafc; }
-        .input-box:focus { border-color: #8b5cf6; box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15); outline: none; transform: translateY(-2px); }
+        .input-box:focus { border-color: #8b5cf6; box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15); transform: translateY(-2px); }
         .dark .input-box:focus { border-color: #a78bfa; box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15); }
+        
         .readonly-box { background: #f8fafc; color: #475569; font-weight: 700; cursor: not-allowed; border-color: #e2e8f0; }
         .dark .readonly-box { background: #1e293b; color: #cbd5e1; border-color: #334155; }
+        
         .btn-kira { transition: all 0.3s; }
         .btn-kira:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3); }
+        
         .fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        #infoModal, #guideModal { backdrop-filter: blur(5px); z-index: 1000; }
-        
-        /* Custom scrollbar untuk Modal Panduan supaya sentiasa kemas */
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+        
+        #infoModal, #guideModal, #posterModal { backdrop-filter: blur(5px); z-index: 1000; }
     </style>
 </head>
 <body class="text-slate-800 dark:text-slate-200 antialiased pb-24 relative">
 
     <div class="bg-gradient-custom"></div>
+
+    <nav id="mainNav" class="fixed top-6 left-0 right-0 z-[100] mx-auto w-[96%] max-w-7xl transition-all duration-500 ease-in-out transform translate-y-0 opacity-100">
+        <div class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/40 dark:border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.06)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.3)] rounded-full px-8 py-3.5 flex items-center justify-between">
+            
+            <a href="index.html" class="flex items-center gap-4 group">
+                <img src="picture/bdu.png" alt="Logo" class="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300">
+                <span class="font-extrabold text-lg md:text-xl tracking-tight text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors border-l border-slate-300 dark:border-slate-600 pl-4 hidden sm:block">
+                    BDU <span class="font-light text-slate-500 dark:text-slate-400">HASA</span>
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 pr-2">
+                <a href="index.html" class="text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 after:transition-all hover:after:w-full">LAMAN UTAMA</a>
+                <a href="staff.html" class="text-sm font-bold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 after:transition-all hover:after:w-full">STAF HASA</a>
+                <a href="user.html" class="text-sm font-bold text-blue-600 dark:text-blue-400 transition-colors relative after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-blue-600">SEWAAAN LUAR</a>
+            </div>
+
+            <div class="md:hidden flex items-center">
+                <a href="index.html" class="px-5 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-bold shadow-sm">
+                    Kembali
+                </a>
+            </div>
+        </div>
+    </nav>
 
     <div id="infoModal" class="fixed inset-0 hidden items-center justify-center bg-slate-900/60 p-4 opacity-0 transition-opacity duration-300">
         <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-2xl max-w-md w-full transform scale-95 transition-transform duration-300 border border-slate-200 dark:border-slate-700">
@@ -80,9 +108,9 @@
                     <div class="text-sm text-purple-700 dark:text-purple-200 ml-10 space-y-2">
                         <p>Pilih ruang dan peralatan yang ingin disewa.</p>
                         <ul class="list-disc list-inside ml-2 font-medium">
-                            <li>Klik <strong>+ Tambah Hari Tempahan</strong> jika tempahan melebihi 1 hari atau di lokasi berbeza.</li>
-                            <li>Pilih Tarikh, Tempat dan Slot tempahan.</li>
-                            <li>Tekan butang <strong>+ Peralatan</strong> untuk menambah sewaan seperti kerusi, meja, projektor dll.</li>
+                            <li>Klik <strong>+ Tambah Hari Tempahan</strong> untuk hari berbeza.</li>
+                            <li>Gunakan butang <strong>+ Tempat Lain</strong> untuk sewa pelbagai ruang dalam hari yang sama.</li>
+                            <li>Tekan butang <strong>+ Peralatan</strong> untuk menambah sewaan seperti kerusi, meja, dsb.</li>
                         </ul>
                     </div>
                 </div>
@@ -90,11 +118,7 @@
                 <div class="bg-emerald-50 dark:bg-emerald-900/10 p-5 rounded-2xl border border-emerald-100 dark:border-emerald-800/30">
                     <h4 class="font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-3 mb-2"><span class="bg-emerald-200 dark:bg-emerald-800 w-7 h-7 rounded-full flex items-center justify-center text-xs font-black text-emerald-800 dark:text-white">3</span> Kira Jumlah & Sebut Harga</h4>
                     <div class="text-sm text-emerald-700 dark:text-emerald-200 ml-10 space-y-2">
-                        <p>Setelah selesai, klik butang <strong>Kira Jumlah Kos Sewaan</strong>. Sistem akan menjana:</p>
-                        <ul class="list-disc list-inside ml-2 font-medium">
-                            <li>Pecahan kos ruang & peralatan.</li>
-                            <li>Caj tambahan SST (6%) secara automatik.</li>
-                        </ul>
+                        <p>Setelah selesai, klik butang <strong>Kira Jumlah Kos Sewaan</strong>.</p>
                         <p class="mt-2">Klik <strong>Hantar Sebut Harga ke Emel</strong> untuk menerima salinan pengiraan terus ke peti masuk (inbox) emel anda.</p>
                     </div>
                 </div>
@@ -105,7 +129,7 @@
         </div>
     </div>
 
-    <header class="w-full pt-10 pb-6 px-4 md:px-8">
+    <header class="w-full pt-32 pb-6 px-4 md:px-8">
         <div class="max-w-5xl mx-auto text-center glass-container p-8 md:p-12 relative overflow-hidden">
             <div class="absolute top-0 left-0 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
             <div class="absolute bottom-0 right-0 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
@@ -128,10 +152,10 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Nama Penuh</label><input type="text" id="pemohonNama" class="input-box" placeholder="Nama Wakil"></div>
-                <div><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Syarikat / Persatuan</label><input type="text" id="pemohonSyarikat" class="input-box" placeholder="Nama Organisasi Anda"></div>
-                <div><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">No. Telefon</label><input type="tel" id="pemohonTel" class="input-box" placeholder="012-3456789"></div>
-                <div><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2">Alamat Emel</label><input type="email" id="pemohonEmail" class="input-box" placeholder="emel@syarikat.com"></div>
+                <div><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2 ml-1">Nama Penuh</label><input type="text" id="pemohonNama" class="input-box" placeholder="Nama Wakil"></div>
+                <div><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2 ml-1">Syarikat / Persatuan</label><input type="text" id="pemohonSyarikat" class="input-box" placeholder="Nama Organisasi Anda"></div>
+                <div><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2 ml-1">No. Telefon</label><input type="tel" id="pemohonTel" class="input-box" placeholder="012-3456789"></div>
+                <div><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-2 ml-1">Alamat Emel</label><input type="email" id="pemohonEmail" class="input-box" placeholder="emel@syarikat.com"></div>
             </div>
         </div>
 
@@ -141,7 +165,7 @@
                     <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center font-black text-xl shadow-sm">2</div>
                     <h2 class="text-lg md:text-xl font-bold text-slate-800 dark:text-slate-100 uppercase tracking-wide">Pilihan Ruang & Peralatan</h2>
                 </div>
-                <button onclick="showInfo('Sewaan Ruang', 'Sistem menyokong tempahan berbilang hari. Klik Tambah Hari Tempahan untuk menyusun tarikh, lokasi, serta peralatan berbeza mengikut hari.')" class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-purple-500 hover:text-white transition-colors flex items-center justify-center font-bold">?</button>
+                <button onclick="showInfo('Sewaan Ruang', 'Sistem menyokong tempahan berbilang hari. Klik Tambah Hari Tempahan, dan gunakan butang Tambah Tempat Lain jika ada banyak ruang dalam hari yang sama.')" class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-purple-500 hover:text-white transition-colors flex items-center justify-center font-bold">?</button>
             </div>
 
             <div id="containerHariRuang" class="space-y-6 mb-6"></div>
@@ -166,7 +190,7 @@
                 <div class="bg-blue-50/80 dark:bg-blue-900/30 border-b border-blue-100 dark:border-blue-800/50 p-6 md:p-8 text-center">
                     <p class="text-sm md:text-base font-bold text-blue-800 dark:text-blue-300 mb-4">Perlukan salinan sebut harga ini? Sila klik butang di bawah:</p>
                     <button type="button" id="btnEmelLuar" onclick="hantarEmelLuar()" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-8 rounded-xl shadow-lg transition-all transform hover:-translate-y-1">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         Hantar Sebut Harga ke Emel
                     </button>
                 </div>
@@ -180,18 +204,14 @@
         <button onclick="showGuide()" class="w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg border border-white/30 flex items-center justify-center focus:outline-none">
             <span class="text-2xl drop-shadow-md">💡</span>
         </button>
-        <span class="ml-3 bg-slate-800 dark:bg-slate-700 text-white text-xs font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg pointer-events-none">
-            Panduan Sistem
-        </span>
+        <span class="ml-3 bg-slate-800 dark:bg-slate-700 text-white text-xs font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg pointer-events-none whitespace-nowrap">Panduan Sistem</span>
     </div>
 
     <div class="fixed bottom-6 -left-7 hover:left-2 z-50 transition-all duration-300 flex items-center group cursor-pointer">
         <button id="darkModeToggle" onclick="toggleDarkMode()" class="w-14 h-14 rounded-full bg-white dark:bg-slate-800 backdrop-blur-md text-slate-700 dark:text-yellow-400 shadow-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center focus:outline-none">
             <span id="ikonDark" class="text-xl">🌙</span>
         </button>
-        <span class="ml-3 bg-slate-800 dark:bg-slate-700 text-white text-xs font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg pointer-events-none">
-            Tukar Tema (Gelap/Cerah)
-        </span>
+        <span class="ml-3 bg-slate-800 dark:bg-slate-700 text-white text-xs font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg pointer-events-none whitespace-nowrap">Tukar Tema</span>
     </div>
 
     <button id="goToTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-6 right-6 bg-gradient-to-tr from-blue-600 to-indigo-500 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform scale-0 opacity-0 z-50 hover:scale-110 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
@@ -218,6 +238,20 @@
             document.getElementById('ikonDark').innerText = isDark ? '☀️' : '🌙';
         };
 
+        // NAV BAR HIDE ON SCROLL
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('mainNav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) { 
+                    nav.style.transform = 'translateY(-150%)'; 
+                    nav.style.opacity = '0'; 
+                } else { 
+                    nav.style.transform = 'translateY(0)'; 
+                    nav.style.opacity = '1'; 
+                }
+            });
+        });
+
         onSnapshot(docRef, (docSnap) => {
             if (docSnap.exists()) {
                 window.adminData = docSnap.data();
@@ -232,26 +266,13 @@
             else { btn.classList.add('scale-0', 'opacity-0'); btn.classList.remove('scale-100', 'opacity-100'); }
         });
 
-        window.showInfo = function(title, text) {
-            document.getElementById('infoTitle').innerText = title; document.getElementById('infoText').innerText = text;
-            const modal = document.getElementById('infoModal'); modal.classList.remove('hidden'); modal.classList.add('flex');
-            setTimeout(() => { modal.classList.remove('opacity-0'); modal.querySelector('div').classList.remove('scale-95'); }, 10);
-        };
-        window.closeInfo = function() {
-            const modal = document.getElementById('infoModal'); modal.classList.add('opacity-0'); modal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); }, 300);
-        };
+        // MODALS
+        window.showInfo = function(title, text) { document.getElementById('infoTitle').innerText = title; document.getElementById('infoText').innerText = text; const m = document.getElementById('infoModal'); m.classList.remove('hidden'); m.classList.add('flex'); setTimeout(() => { m.classList.remove('opacity-0'); m.querySelector('div').classList.remove('scale-95'); }, 10); };
+        window.closeInfo = function() { const m = document.getElementById('infoModal'); m.classList.add('opacity-0'); m.querySelector('div').classList.add('scale-95'); setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300); };
+        window.showGuide = function() { const m = document.getElementById('guideModal'); m.classList.remove('hidden'); m.classList.add('flex'); setTimeout(() => { m.classList.remove('opacity-0'); m.querySelector('div').classList.remove('scale-95'); }, 10); };
+        window.closeGuide = function() { const m = document.getElementById('guideModal'); m.classList.add('opacity-0'); m.querySelector('div').classList.add('scale-95'); setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300); };
 
-        // NEW: Modals - Panduan Utama (Guide Modal)
-        window.showGuide = function() {
-            const modal = document.getElementById('guideModal'); modal.classList.remove('hidden'); modal.classList.add('flex');
-            setTimeout(() => { modal.classList.remove('opacity-0'); modal.querySelector('div').classList.remove('scale-95'); }, 10);
-        };
-        window.closeGuide = function() {
-            const modal = document.getElementById('guideModal'); modal.classList.add('opacity-0'); modal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); }, 300);
-        };
-
+        // --- PENGURUSAN HARI & LOKASI BERBILANG ---
         window.tambahHari = function() {
             window.hariCounter++;
             let id = `day_${window.hariCounter}`;
@@ -261,16 +282,36 @@
             divRuang.id = `block_ruang_${id}`;
             divRuang.className = "bg-purple-50/50 dark:bg-purple-900/20 p-6 md:p-8 rounded-2xl border border-purple-100 dark:border-purple-800/50 relative mb-6";
             divRuang.innerHTML = `
-                <div class="flex justify-between items-center mb-5"><h3 class="text-sm font-bold text-purple-800 dark:text-purple-300">Lokasi & Slot (Hari ${window.hariCounter})</h3>${window.hariCounter > 1 ? `<button onclick="padamHari('${id}')" class="text-xs text-rose-600 hover:text-rose-700 font-bold bg-white dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-rose-200 dark:border-slate-700 shadow-sm">Padam Hari</button>` : ''}</div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 mb-5">
-                    <div><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1">Tarikh Tempahan</label><input type="date" id="tarikh_${id}" class="input-box py-3 text-sm cursor-pointer" onchange="window.syncTarikhMakan('${id}'); kiraSewaLuar(false)"></div>
-                    <div><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1">Pilih Tempat</label><select id="tempatSelect_${id}" class="input-box py-3 text-sm bg-white dark:bg-slate-800 cursor-pointer" onchange="kemaskiniHariDropdown('${id}')"><option value="">-- Pilih --</option></select></div>
-                    <div><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1">Jenis Hari</label><select id="hariSelect_${id}" class="input-box py-3 text-sm bg-white dark:bg-slate-800 cursor-pointer" onchange="kemaskiniSlotDropdown('${id}')"><option value="">-- Pilih --</option></select></div>
-                    <div><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1">Slot Masa</label><select id="slotSelect_${id}" class="input-box py-3 text-sm bg-white dark:bg-slate-800 cursor-pointer" onchange="updateKuantitiRuangLabel('${id}'); kiraSewaLuar(false)"><option value="0" data-unit="Tiada">-- Pilih --</option></select></div>
-                    <div id="boxKuantitiRuang_${id}" class="hidden"><label id="labelKuantitiRuang_${id}" class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1">Kuantiti</label><input type="number" id="kuantitiRuang_${id}" class="input-box py-3 text-sm" value="1" min="1" oninput="kiraSewaLuar(false)"></div>
+                <div class="flex flex-wrap justify-between items-center mb-5 gap-3">
+                    <h3 class="text-sm font-bold text-purple-800 dark:text-purple-300">Lokasi & Slot (Hari ${window.hariCounter})</h3>
+                    <div class="flex items-center gap-3">
+                        <button type="button" onclick="tambahLokasi('${id}')" class="text-[10px] font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/50 hover:bg-indigo-200 px-3 py-1.5 rounded-xl transition-colors shadow-sm border border-indigo-200 dark:border-indigo-800/40">+ Tempat Lain</button>
+                        ${window.hariCounter > 1 ? `<button onclick="padamHari('${id}')" class="text-xs text-rose-600 hover:text-rose-700 font-bold bg-white dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-rose-200 dark:border-slate-700 shadow-sm">Padam Hari</button>` : ''}
+                    </div>
                 </div>
+                
+                <div id="lokasiContainer_${id}" class="space-y-3 mb-5">
+                    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 mb-2 lokasi-row">
+                        <div class="w-full mb-4">
+                            <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1">Tarikh Tempahan</label>
+                            <input type="date" id="tarikh_${id}" class="input-box w-full cursor-pointer py-3 text-sm" onchange="window.syncTarikhMakan('${id}'); kiraSewaLuar(false)">
+                        </div>
+
+                        <div class="flex flex-wrap md:flex-nowrap gap-3 items-end">
+                            <div class="w-full md:flex-1"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block">Tempat</label><select class="input-box cursor-pointer py-3 text-sm pilihan-tempat" onchange="window.kemaskiniHariDropdown(this)"><option value="">-- Pilih Tempat --</option></select></div>
+                            <div class="w-full md:flex-1"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block">Kategori Hari</label><select class="input-box cursor-pointer py-3 text-sm pilihan-hari" onchange="window.kemaskiniSlotDropdown(this)"><option value="">-- Kategori Hari --</option></select></div>
+                            <div class="w-full md:flex-1"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block">Slot Masa</label><select class="input-box cursor-pointer py-3 text-sm pilihan-slot" onchange="window.updateKuantitiRuangLabel(this); kiraSewaLuar(false)"><option value="0" data-unit="Tiada">-- Pilih Slot --</option></select></div>
+                            <div class="w-[45%] md:w-24 hidden box-kuantiti"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 text-center sm:hidden md:block label-kuantiti">Kuantiti</label><input type="number" class="input-box input-kuantiti text-center px-2 py-3 text-sm" value="1" min="1" oninput="kiraSewaLuar(false)"></div>
+                            <div class="w-[10%] md:w-auto p-3 mb-0.5 opacity-0 pointer-events-none hidden md:block">✖</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="pt-4 border-t border-purple-200/50 dark:border-purple-800/30">
-                    <div class="flex justify-between items-center mb-4"><label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Peralatan Tambahan</label><button onclick="addPeralatanRow('${id}')" class="text-[10px] font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/50 hover:bg-indigo-200 px-3 py-1.5 rounded-xl">+ Peralatan</button></div>
+                    <div class="flex justify-between items-center mb-4">
+                        <label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase ml-1 mb-0">Peralatan Tambahan</label>
+                        <button onclick="addPeralatanRow('${id}')" class="text-[10px] font-bold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/50 hover:bg-indigo-200 px-3 py-1.5 rounded-xl transition-colors shadow-sm border border-indigo-200 dark:border-indigo-800/40">+ Peralatan</button>
+                    </div>
                     <div id="peralatanContainer_${id}" class="space-y-3"></div>
                 </div>
             `;
@@ -279,69 +320,102 @@
             window.refreshSemuaRuang();
         };
 
+        window.tambahLokasi = function(idHari) {
+            let container = document.getElementById(`lokasiContainer_${idHari}`);
+            let newLokasi = document.createElement('div');
+            newLokasi.className = 'flex flex-wrap md:flex-nowrap gap-3 items-end bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 mb-2 lokasi-row fade-in-up';
+            newLokasi.innerHTML = `
+                <div class="w-full md:flex-1"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block">Tempat</label><select class="input-box cursor-pointer py-3 text-sm pilihan-tempat" onchange="window.kemaskiniHariDropdown(this)"><option value="">-- Pilih Tempat --</option></select></div>
+                <div class="w-full md:flex-1"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block">Kategori Hari</label><select class="input-box cursor-pointer py-3 text-sm pilihan-hari" onchange="window.kemaskiniSlotDropdown(this)"><option value="">-- Kategori Hari --</option></select></div>
+                <div class="w-full md:flex-1"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block">Slot Masa</label><select class="input-box cursor-pointer py-3 text-sm pilihan-slot" onchange="window.updateKuantitiRuangLabel(this); kiraSewaLuar(false)"><option value="0" data-unit="Tiada">-- Pilih Slot --</option></select></div>
+                <div class="w-[45%] md:w-24 hidden box-kuantiti"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 text-center sm:hidden md:block label-kuantiti">Kuantiti</label><input type="number" class="input-box input-kuantiti text-center px-2 py-3 text-sm" value="1" min="1" oninput="kiraSewaLuar(false)"></div>
+                <button type="button" onclick="this.closest('.lokasi-row').remove(); kiraSewaLuar(false);" class="w-[10%] md:w-auto p-3 text-slate-300 hover:text-rose-500 rounded-lg text-xl mb-0.5">✖</button>
+            `;
+            container.appendChild(newLokasi);
+            window.populateTempatDropdown(newLokasi.querySelector('.pilihan-tempat'));
+        };
+
         window.padamHari = function(id) { document.getElementById(`block_ruang_${id}`).remove(); window.arrHari = window.arrHari.filter(h => h !== id); window.kiraSewaLuar(false); };
 
         window.syncTarikhMakan = function(id) { 
             let val = document.getElementById(`tarikh_${id}`).value;
             if(val) {
-                let d = new Date(val); let day = d.getDay(); let hSel = document.getElementById(`hariSelect_${id}`);
-                if(hSel && hSel.options.length > 1) {
-                    let opts = Array.from(hSel.options); let targetOpt = null;
-                    if(day === 0 || day === 6) { targetOpt = opts.find(o => o.value.toLowerCase().includes('sabtu') || o.value.toLowerCase().includes('ahad') || o.value.toLowerCase().includes('minggu')); } 
-                    else { targetOpt = opts.find(o => o.value.toLowerCase().includes('bekerja') || o.value.toLowerCase().includes('biasa')); }
-                    if(targetOpt && hSel.value !== targetOpt.value) { hSel.value = targetOpt.value; window.kemaskiniSlotDropdown(id); }
+                let d = new Date(val); let day = d.getDay(); 
+                let contLokasi = document.getElementById(`lokasiContainer_${id}`);
+                if(contLokasi) {
+                    contLokasi.querySelectorAll('.pilihan-hari').forEach(hSel => {
+                        if(hSel.options.length > 1) {
+                            let opts = Array.from(hSel.options); let targetOpt = null;
+                            if(day === 0 || day === 6) { targetOpt = opts.find(o => o.value.toLowerCase().includes('sabtu') || o.value.toLowerCase().includes('ahad') || o.value.toLowerCase().includes('minggu')); } 
+                            else { targetOpt = opts.find(o => o.value.toLowerCase().includes('bekerja') || o.value.toLowerCase().includes('biasa')); }
+                            if(targetOpt && hSel.value !== targetOpt.value) { hSel.value = targetOpt.value; window.kemaskiniSlotDropdown(hSel); }
+                        }
+                    });
                 }
             }
         };
 
+        window.populateTempatDropdown = function(sel) {
+            let oldV = sel.value; sel.innerHTML = '<option value="">-- Pilih Tempat --</option>';
+            if(window.adminData.ruang) { 
+                let senaraiTempat = window.adminData.susunanTempat || Object.keys(window.adminData.ruang);
+                let tempatSah = senaraiTempat.filter(t => window.adminData.ruang[t]);
+                Object.keys(window.adminData.ruang).forEach(t => { if(!tempatSah.includes(t)) tempatSah.push(t); });
+                tempatSah.forEach(t => sel.add(new Option(t, t))); 
+            }
+            if(oldV && window.adminData.ruang[oldV]) sel.value = oldV;
+        };
+
         window.refreshSemuaRuang = function() {
-            window.arrHari.forEach(id => {
-                const tmp = document.getElementById(`tempatSelect_${id}`);
-                if(tmp) { 
-                    let cTmp = tmp.value; tmp.innerHTML = '<option value="">-- Pilih Tempat --</option>'; 
-                    if(window.adminData.ruang) { 
-                        let senaraiTempat = window.adminData.susunanTempat || Object.keys(window.adminData.ruang);
-                        let tempatSah = senaraiTempat.filter(t => window.adminData.ruang[t]);
-                        Object.keys(window.adminData.ruang).forEach(t => { if(!tempatSah.includes(t)) tempatSah.push(t); });
-                        tempatSah.forEach(t => tmp.add(new Option(t, t))); 
-                    } 
-                    if(cTmp && window.adminData.ruang[cTmp]) { tmp.value = cTmp; window.kemaskiniHariDropdown(id); } 
-                }
-                let cont = document.getElementById(`peralatanContainer_${id}`);
-                if(cont) { cont.querySelectorAll('.cat-select').forEach(sel => { let oldV = sel.value; let catOpt = `<option value="">-- Kategori --</option>`; if(window.adminData.peralatan) { Object.keys(window.adminData.peralatan).forEach(c => catOpt += `<option value="${c}">${c}</option>`); } sel.innerHTML = catOpt; if(oldV) sel.value = oldV; }); }
+            document.querySelectorAll('.pilihan-tempat').forEach(sel => { window.populateTempatDropdown(sel); if(sel.value) window.kemaskiniHariDropdown(sel); });
+            
+            document.querySelectorAll('.cat-select').forEach(sel => { 
+                let oldV = sel.value; let catOpt = `<option value="">-- Kategori --</option>`; 
+                if(window.adminData.peralatan) { Object.keys(window.adminData.peralatan).forEach(c => catOpt += `<option value="${c}">${c}</option>`); } 
+                sel.innerHTML = catOpt; if(oldV) sel.value = oldV; 
             });
         };
 
-        window.kemaskiniHariDropdown = function(id) {
-            const t = document.getElementById(`tempatSelect_${id}`).value; const hSel = document.getElementById(`hariSelect_${id}`); hSel.innerHTML = '<option value="">-- Pilih Kategori Hari --</option>';
-            if(t && window.adminData.ruang[t]) { Object.keys(window.adminData.ruang[t]).forEach(hari => hSel.add(new Option(hari, hari))); } window.kemaskiniSlotDropdown(id);
+        window.kemaskiniHariDropdown = function(el) {
+            const t = el.value; const row = el.closest('.lokasi-row'); const hSel = row.querySelector('.pilihan-hari'); 
+            hSel.innerHTML = '<option value="">-- Kategori Hari --</option>';
+            if(t && window.adminData.ruang[t]) { Object.keys(window.adminData.ruang[t]).forEach(hari => hSel.add(new Option(hari, hari))); } 
+            window.kemaskiniSlotDropdown(hSel);
         };
 
-        window.kemaskiniSlotDropdown = function(id) {
-            const t = document.getElementById(`tempatSelect_${id}`).value; const h = document.getElementById(`hariSelect_${id}`).value; const sSel = document.getElementById(`slotSelect_${id}`); sSel.innerHTML = '<option value="0" data-unit="Tiada">-- Pilih Slot --</option>';
-            if(t && h && window.adminData.ruang[t][h]) { window.adminData.ruang[t][h].forEach(slot => { 
-                let uLab = (slot.unit && slot.unit !== 'Tiada') ? ` / ${slot.unit.replace('Per ', '')}` : ''; 
-                // GUNA HARGA LUAR
-                let hg = slot.hargaLuar !== undefined ? slot.hargaLuar : (slot.harga || 0);
-                let opt = new Option(`${slot.namaSlot} (RM ${hg.toFixed(2)}${uLab})`, hg); opt.setAttribute('data-unit', slot.unit || 'Tiada'); sSel.add(opt); 
-            }); }
-            window.updateKuantitiRuangLabel(id); window.kiraSewaLuar(false);
+        window.kemaskiniSlotDropdown = function(el) {
+            const row = el.closest('.lokasi-row');
+            const t = row.querySelector('.pilihan-tempat').value; const h = row.querySelector('.pilihan-hari').value; 
+            const sSel = row.querySelector('.pilihan-slot'); sSel.innerHTML = '<option value="0" data-unit="Tiada">-- Pilih Slot --</option>';
+            if(t && h && window.adminData.ruang[t][h]) { 
+                window.adminData.ruang[t][h].forEach(slot => { 
+                    let uLab = (slot.unit && slot.unit !== 'Tiada') ? ` / ${slot.unit.replace('Per ', '')}` : ''; 
+                    // GUNA HARGA LUAR
+                    let hg = slot.hargaLuar !== undefined ? slot.hargaLuar : (slot.harga || 0);
+                    let opt = new Option(`${slot.namaSlot} (RM ${hg.toFixed(2)}${uLab})`, hg); opt.setAttribute('data-unit', slot.unit || 'Tiada'); sSel.add(opt); 
+                }); 
+            }
+            window.updateKuantitiRuangLabel(sSel); window.kiraSewaLuar(false);
         };
 
-        window.updateKuantitiRuangLabel = function(id) {
-            const sel = document.getElementById(`slotSelect_${id}`); const unit = sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].getAttribute('data-unit') : 'Tiada'; const box = document.getElementById(`boxKuantitiRuang_${id}`); const lab = document.getElementById(`labelKuantitiRuang_${id}`);
-            if(unit === 'Per Jam') { box.classList.remove('hidden'); lab.innerText = 'Kuantiti (Jam)'; } else if(unit === 'Per Slot / Hari') { box.classList.remove('hidden'); lab.innerText = 'Kuantiti (Slot/Hari)'; } else { box.classList.add('hidden'); document.getElementById(`kuantitiRuang_${id}`).value = 1; }
+        window.updateKuantitiRuangLabel = function(el) {
+            const row = el.closest('.lokasi-row');
+            const unit = el.options[el.selectedIndex] ? el.options[el.selectedIndex].getAttribute('data-unit') : 'Tiada'; 
+            const box = row.querySelector('.box-kuantiti'); const lab = row.querySelector('.label-kuantiti');
+            if(unit === 'Per Jam') { box.classList.remove('hidden'); lab.innerText = 'Kuantiti (Jam)'; } 
+            else if(unit === 'Per Slot / Hari') { box.classList.remove('hidden'); lab.innerText = 'Kuantiti (Slot)'; } 
+            else { box.classList.add('hidden'); row.querySelector('.input-kuantiti').value = 1; }
         };
 
         window.addPeralatanRow = function(id) {
             let rowId = `alat_${Math.random().toString(36).substr(2, 9)}`; let catOptions = `<option value="">-- Kategori --</option>`;
             if(window.adminData.peralatan) { Object.keys(window.adminData.peralatan).forEach(cat => { catOptions += `<option value="${cat}">${cat}</option>`; }); }
             const rowHTML = `
-                <div id="${rowId}" class="flex flex-wrap md:flex-nowrap gap-3 items-end bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 mb-2">
-                    <div class="w-full md:w-1/3"><label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Kategori</label><select class="input-box py-3 text-sm cursor-pointer cat-select" onchange="updateAlatDrop(this, '${rowId}')">${catOptions}</select></div>
-                    <div class="w-full md:w-1/3"><label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Jenis Peralatan</label><select class="input-box py-3 text-sm cursor-pointer item-select" onchange="kiraTotalBaris('${rowId}')"><option value="0">-- Pilih Jenis --</option></select></div>
-                    <div class="w-[45%] md:w-24"><label class="block text-[10px] font-bold text-slate-400 uppercase mb-1 text-center">Kuantiti</label><input type="number" class="input-box py-3 text-sm qty-input text-center" value="1" min="1" oninput="kiraTotalBaris('${rowId}')"></div>
-                    <div class="w-[45%] md:w-32 flex-1"><label class="block text-[10px] font-bold text-slate-400 uppercase mb-1 text-center">Jumlah (RM)</label><input type="text" class="input-box readonly-box py-3 text-sm row-total text-center text-indigo-700 dark:text-indigo-400 font-bold" value="0.00" readonly></div>
+                <div id="${rowId}" class="flex flex-wrap md:flex-nowrap gap-3 items-end bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 mb-2 alat-row fade-in-up">
+                    <div class="w-full md:w-1/3"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block">Kategori</label><select class="input-box cursor-pointer py-3 text-sm cat-select" onchange="updateAlatDrop(this, '${rowId}')">${catOptions}</select></div>
+                    <div class="w-full md:w-1/3"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block">Jenis Peralatan</label><select class="input-box cursor-pointer py-3 text-sm item-select" onchange="kiraTotalBaris('${rowId}')"><option value="0">-- Pilih Jenis --</option></select></div>
+                    <div class="w-[45%] md:w-24"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block text-center">Kuantiti</label><input type="number" class="input-box py-3 text-sm qty-input text-center" value="1" min="1" oninput="kiraTotalBaris('${rowId}')"></div>
+                    <div class="w-[45%] md:w-32 flex-1"><label class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mb-1 ml-1 sm:hidden md:block text-center">Jumlah (RM)</label><input type="text" class="input-box readonly-box py-3 text-sm row-total text-center text-indigo-700 dark:text-indigo-400 font-bold" value="0.00" readonly></div>
                     <button onclick="document.getElementById('${rowId}').remove(); kiraSewaLuar(false);" class="w-[10%] md:w-auto p-3 text-slate-300 hover:text-rose-500 rounded-lg text-xl mb-0.5">✖</button>
                 </div>
             `;
@@ -369,22 +443,32 @@
 
             window.arrHari.forEach((id, idx) => {
                 let tarikhInp = document.getElementById(`tarikh_${id}`); let tarikh = tarikhInp && tarikhInp.value ? tarikhInp.value : `Hari ${idx+1}`;
-                let sSel = document.getElementById(`slotSelect_${id}`); let hRuang = sSel ? parseFloat(sSel.value) || 0 : 0;
-                let kRuang = document.getElementById(`kuantitiRuang_${id}`); let qRuang = kRuang ? parseInt(kRuang.value) || 1 : 1;
-                let subRuang = hRuang * qRuang; totalSewaRuang += subRuang;
+                
+                // Kira Semua Lokasi Hari Ini
+                let contLokasi = document.getElementById(`lokasiContainer_${id}`);
+                if(contLokasi) {
+                    contLokasi.querySelectorAll('.lokasi-row').forEach(row => {
+                        let sSel = row.querySelector('.pilihan-slot'); let hRuang = sSel ? parseFloat(sSel.value) || 0 : 0;
+                        let kRuang = row.querySelector('.input-kuantiti'); 
+                        let isHidden = row.querySelector('.box-kuantiti').classList.contains('hidden');
+                        let qRuang = (kRuang && !isHidden) ? parseInt(kRuang.value) || 1 : 1;
+                        let subRuang = hRuang * qRuang; totalSewaRuang += subRuang;
 
-                let tSel = document.getElementById(`tempatSelect_${id}`); let namaT = tSel ? tSel.value || "-" : "-";
-                let namaSlot = (sSel && sSel.options[sSel.selectedIndex]) ? sSel.options[sSel.selectedIndex].text.split(' (')[0] : "-";
-                let unitRuang = (sSel && sSel.options[sSel.selectedIndex]) ? sSel.options[sSel.selectedIndex].getAttribute('data-unit') : "Tiada";
-                let lblQ = ""; if (unitRuang !== "Tiada" && unitRuang !== null && hRuang > 0) lblQ = ` (x${qRuang} ${unitRuang.replace('Per ', '')})`;
+                        let tSel = row.querySelector('.pilihan-tempat'); let namaT = (tSel && tSel.value) ? tSel.value : "-";
+                        let namaSlot = (sSel && sSel.options[sSel.selectedIndex]) ? sSel.options[sSel.selectedIndex].text.split(' (')[0] : "-";
+                        let unitRuang = (sSel && sSel.options[sSel.selectedIndex]) ? sSel.options[sSel.selectedIndex].getAttribute('data-unit') : "Tiada";
+                        let lblQ = (unitRuang !== "Tiada" && hRuang > 0) ? ` (x${qRuang} ${unitRuang.replace('Per ', '')})` : "";
 
-                if(subRuang > 0) { detailSewa += `<div class="flex justify-between text-[11px] text-slate-400 dark:text-slate-500 pb-1 pt-1 border-t border-slate-700/10 dark:border-white/10"><span>📅 ${tarikh}: ${namaT} - ${namaSlot}${lblQ}</span><span>RM ${subRuang.toFixed(2)}</span></div>`; }
+                        if(subRuang > 0) { detailSewa += `<div class="flex justify-between text-[11px] text-slate-400 dark:text-slate-500 pb-1 pt-1 border-t border-slate-700/10 dark:border-white/10"><span>📅 ${tarikh}: ${namaT} - ${namaSlot}${lblQ}</span><span>RM ${subRuang.toFixed(2)}</span></div>`; }
+                    });
+                }
 
+                // Kira Semua Peralatan Hari Ini
                 let alatCont = document.getElementById(`peralatanContainer_${id}`);
                 if(alatCont) {
                     let listAlatHTML = '';
                     alatCont.querySelectorAll('.row-total').forEach(inp => {
-                        let row = inp.closest('.flex'); let selJenis = row.querySelector('.item-select'); let qtyInp = row.querySelector('.qty-input');
+                        let row = inp.closest('.alat-row'); let selJenis = row.querySelector('.item-select'); let qtyInp = row.querySelector('.qty-input');
                         let qty = qtyInp ? parseInt(qtyInp.value) || 0 : 0; let kos = parseFloat(inp.value) || 0;
                         if(selJenis && selJenis.value !== "0" && qty > 0) {
                             let namaAlat = selJenis.options[selJenis.selectedIndex].text.split(' (')[0]; totalSewaAlat += kos;
@@ -420,10 +504,26 @@
                     };
 
                     window.arrHari.forEach(id => {
-                        let sSel = document.getElementById(`slotSelect_${id}`);
-                        let dayObj = { tarikh: document.getElementById(`tarikh_${id}`).value || "Tiada Tarikh", ruang: document.getElementById(`tempatSelect_${id}`).value || "-", slot: (sSel && sSel.options[sSel.selectedIndex]) ? sSel.options[sSel.selectedIndex].text.split(' (')[0] : "-", harga_ruang: sSel ? parseFloat(sSel.value) || 0 : 0, kuantiti_ruang: parseInt(document.getElementById(`kuantitiRuang_${id}`).value) || 1, peralatan_tambahan: [] };
+                        let dayObj = { tarikh: document.getElementById(`tarikh_${id}`).value || "Tiada Tarikh", lokasi_tempahan: [], peralatan_tambahan: [] };
+                        
+                        let contLokasi = document.getElementById(`lokasiContainer_${id}`);
+                        if(contLokasi) {
+                            contLokasi.querySelectorAll('.lokasi-row').forEach(row => {
+                                let sSel = row.querySelector('.pilihan-slot'); let tSel = row.querySelector('.pilihan-tempat'); let kSel = row.querySelector('.input-kuantiti');
+                                let isHidden = row.querySelector('.box-kuantiti').classList.contains('hidden');
+                                if(tSel && tSel.value) {
+                                    dayObj.lokasi_tempahan.push({
+                                        ruang: tSel.value,
+                                        slot: (sSel && sSel.options[sSel.selectedIndex]) ? sSel.options[sSel.selectedIndex].text.split(' (')[0] : "-",
+                                        harga_ruang: sSel ? parseFloat(sSel.value) || 0 : 0,
+                                        kuantiti_ruang: (kSel && !isHidden) ? parseInt(kSel.value) || 1 : 1
+                                    });
+                                }
+                            });
+                        }
+                        
                         let aCont = document.getElementById(`peralatanContainer_${id}`);
-                        if(aCont) { aCont.querySelectorAll('.row-total').forEach(row => { let selJ = row.parentElement.querySelector('.item-select'); if(selJ && selJ.value !== "0") { let alatName = selJ.options[selJ.selectedIndex].text.split(' (')[0]; let qty = parseInt(row.parentElement.querySelector('.qty-input').value) || 0; dayObj.peralatan_tambahan.push(`${alatName} (x${qty})`); } }); }
+                        if(aCont) { aCont.querySelectorAll('.row-total').forEach(row => { let selJ = row.closest('.alat-row').querySelector('.item-select'); if(selJ && selJ.value !== "0") { let alatName = selJ.options[selJ.selectedIndex].text.split(' (')[0]; let qty = parseInt(row.closest('.alat-row').querySelector('.qty-input').value) || 0; dayObj.peralatan_tambahan.push(`${alatName} (x${qty})`); } }); }
                         recordData.hari_berprogram.push(dayObj);
                     });
 
